@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AONE - Global Gaming Malaysia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        :root {
+            --primary: #1ABC9C;
+            --primary-dark: #16A085;
+            --dark: #1a1a2e;
+            --bg: #f5f5f5;
+            --white: #fff;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            padding-bottom: 70px;
+        }
+        
+        /* App Bar */
+        .app-bar {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .app-bar__left { display: flex; align-items: center; gap: 10px; }
+        .app-bar__icon { width: 36px; height: 36px; background: var(--dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .app-bar__icon img { width: 28px; height: 28px; object-fit: contain; }
+        .app-bar__text h4 { color: white; font-size: 12px; font-weight: 800; }
+        .app-bar__text p { color: rgba(255,255,255,0.8); font-size: 10px; }
+        .btn-download {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--dark);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header__logo { height: 28px; }
+        .header__logo img { height: 100%; width: auto; }
+        .header__nav { display: flex; gap: 8px; align-items: center; }
+        .btn-login {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .btn-signup {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .btn-menu {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+        
+        /* Hero */
+        .hero { padding: 12px; background: white; }
+        .hero__banner {
+            background: linear-gradient(135deg, #E8F6F3 0%, #D5F5E3 100%);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .hero__banner img { width: 100%; height: auto; display: block; }
+        
+        /* Marquee */
+        .marquee {
+            background: #E8F6F3;
+            margin-top: 12px;
+            padding: 10px 16px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #666;
+            overflow: hidden;
+        }
+        .marquee__icon { color: var(--primary); font-size: 14px; flex-shrink: 0; }
+        .marquee__text { white-space: nowrap; animation: scroll 20s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
+        /* Categories */
+        .categories-section { padding: 12px 12px 0; }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            background: white;
+            padding: 16px 12px;
+            border-radius: 16px;
+        }
+        .category { text-align: center; cursor: pointer; }
+        .category img { width: 50px; height: 50px; object-fit: contain; }
+        .category__name { font-size: 9px; font-weight: 700; color: #888; display: block; margin-top: 4px; }
+        
+        /* Section */
+        .section { padding: 16px; background: white; margin-top: 8px; }
+        .section__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .section__title { font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+        .badge-hot {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 800;
+        }
+        .view-all { color: var(--primary); font-size: 12px; font-weight: 600; text-decoration: none; }
+        
+        /* Games Scroll */
+        .games-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+        }
+        .games-scroll::-webkit-scrollbar { display: none; }
+        .game-card {
+            min-width: 100px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        .game-card img { width: 100%; height: 100px; object-fit: cover; display: block; }
+        .game-card__badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 800;
+        }
+        
+        /* Providers Grid */
+        .providers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .provider-card {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+        }
+        .provider-card img { width: 100%; height: 70%; object-fit: cover; }
+        .provider-card__name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 6px;
+            font-size: 9px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 16px 30px;
+            background: white;
+            margin-top: 8px;
+        }
+        .footer__text { color: #aaa; font-size: 12px; line-height: 1.6; }
+        
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0 8px;
+            z-index: 100;
+        }
+        .bottom-nav__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #888;
+            text-decoration: none;
+            font-size: 10px;
+            gap: 2px;
+        }
+        .bottom-nav__item--home { margin-top: -20px; }
+        .bottom-nav__home-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--dark);
+            font-weight: 900;
+            font-size: 18px;
+            color: white;
+            font-style: italic;
+        }
+        
+        /* Chat Button */
+        .fab-chat {
+            position: fixed;
+            bottom: 90px;
+            right: 16px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(26, 188, 156, 0.4);
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+    <!-- App Bar -->
+    <div class="app-bar">
+        <div class="app-bar__left">
+            <div class="app-bar__icon"><img src="images/header/app-icon.png" alt="A1"></div>
+            <div class="app-bar__text">
+                <h4>AONE APP</h4>
+                <p>Download App Now!</p>
+            </div>
+        </div>
+        <button class="btn-download">DOWNLOAD NOW</button>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__logo"><img src="images/header/logo.png" alt="AONE"></div>
+        <nav class="header__nav">
+            <button class="btn-login">LOGIN</button>
+            <button class="btn-signup">SIGN UP</button>
+            <button class="btn-menu">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero__banner">
+            <img src="images/banners/exclusive.png" alt="Exclusive Slot Game">
+        </div>
+
+        <div class="marquee">
+            <span class="marquee__icon">🔊</span>
+            <span class="marquee__text">Welcome to AONE GLOBAL GAMING. Malaysia's most trusted platform! 🎰</span>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="categories">
+            <div class="category">
+                <img src="images/categories/slots-active.png" alt="Slots">
+                <span class="category__name">SLOTS</span>
+            </div>
+            <div class="category">
+                <img src="images/categories/app-slot.png" alt="App Slot">
+                <span class="category__name">APP SLOT</span>
+            </div>
+            <div class="category">
+                <img src="images/categories/live.png" alt="Live">
+                <span class="category__name">LIVE</span>
+            </div>
+            <div class="category">
+                <img src="images/categories/lottery.png" alt="Lottery">
+                <span class="category__name">LOTTERY</span>
+            </div>
+            <div class="category">
+                <img src="images/categories/sports.png" alt="Sports">
+                <span class="category__name">SPORTS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hot Games -->
+    <section class="section">
+        <div class="section__header">
+            <div class="section__title">🔥 Hot <span class="badge-hot">HOT</span></div>
+            <a href="#" class="view-all">View all →</a>
+        </div>
+        
+        <div class="games-scroll">
+            <div class="game-card"><span class="game-card__badge">Hot</span><img src="images/games/pragmatic.webp" alt="Pragmatic"></div>
+            <div class="game-card"><span class="game-card__badge">Hot</span><img src="images/games/lucky365.webp" alt="Lucky365"></div>
+            <div class="game-card"><span class="game-card__badge">Hot</span><img src="images/games/bng.webp" alt="BNG"></div>
+            <div class="game-card"><span class="game-card__badge">Hot</span><img src="images/games/jili.webp" alt="Jili"></div>
+            <div class="game-card"><span class="game-card__badge">Hot</span><img src="images/games/nextspin.webp" alt="Nextspin"></div>
+            <div class="game-card"><span class="game-card__badge">Hot</span><img src="images/games/besoft.webp" alt="Besoft"></div>
+        </div>
+    </section>
+
+    <!-- Providers -->
+    <section class="section">
+        <div class="section__header">
+            <div class="section__title">🎮 Game Providers</div>
+            <a href="#" class="view-all">View all →</a>
+        </div>
+        
+        <div class="providers-grid">
+            <div class="provider-card"><img src="images/games/pragmatic.webp" alt=""><div class="provider-card__name">PRAGMATIC</div></div>
+            <div class="provider-card"><img src="images/games/lucky365.webp" alt=""><div class="provider-card__name">LUCKY365</div></div>
+            <div class="provider-card"><img src="images/games/bng.webp" alt=""><div class="provider-card__name">BNG</div></div>
+            <div class="provider-card"><img src="images/games/jili.webp" alt=""><div class="provider-card__name">JILI</div></div>
+            <div class="provider-card"><img src="images/games/nextspin.webp" alt=""><div class="provider-card__name">NEXTSPIN</div></div>
+            <div class="provider-card"><img src="images/games/besoft.webp" alt=""><div class="provider-card__name">BESOFT</div></div>
+            <div class="provider-card"><img src="images/games/octoplay.webp" alt=""><div class="provider-card__name">OCTOPLAY</div></div>
+            <div class="provider-card"><img src="images/games/afb777.webp" alt=""><div class="provider-card__name">AFB777</div></div>
+            <div class="provider-card"><img src="images/games/mega888.webp" alt=""><div class="provider-card__name">MEGA888</div></div>
+            <div class="provider-card"><img src="images/games/kiss918.webp" alt=""><div class="provider-card__name">918KISS</div></div>
+            <div class="provider-card"><img src="images/games/hacksaw.webp" alt=""><div class="provider-card__name">HACKSAW</div></div>
+            <div class="provider-card"><img src="images/games/spade.webp" alt=""><div class="provider-card__name">SPADE</div></div>
+            <div class="provider-card"><img src="images/games/pegasus.webp" alt=""><div class="provider-card__name">PEGASUS</div></div>
+            <div class="provider-card"><img src="images/games/advant.webp" alt=""><div class="provider-card__name">ADVANT</div></div>
+            <div class="provider-card"><img src="images/games/ace333.webp" alt=""><div class="provider-card__name">ACE333</div></div>
+            <div class="provider-card"><img src="images/games/fachai.webp" alt=""><div class="provider-card__name">FA CHAI</div></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer__text">Discover more about Aone Malaysia — trusted platform, bonuses, and unique features.</p>
+    </footer>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+        <a href="#" class="bottom-nav__item">
+            <span>👥</span>
+            <span>Referral</span>
+        </a>
+        <a href="#" class="bottom-nav__item">
+            <span>🎁</span>
+            <span>Event</span>
+        </a>
+        <a href="#" class="bottom-nav__item bottom-nav__item--home">
+            <div class="bottom-nav__home-btn">A1</div>
+            <span>Home</span>
+        </a>
+        <a href="#" class="bottom-nav__item">
+            <span>💳</span>
+            <span>Transaction</span>
+        </a>
+        <a href="#" class="bottom-nav__item">
+            <span>👤</span>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- Chat Button -->
+    <div class="fab-chat">💬</div>
+</body>
+</html>
