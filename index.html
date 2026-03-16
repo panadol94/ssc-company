@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>AONE - Global Gaming Malaysia</title>
+    <title>JB8 - Global Gaming Malaysia</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         :root {
-            --primary: #1ABC9C;
-            --primary-dark: #16A085;
-            --dark: #1a1a2e;
-            --bg: #f5f5f5;
+            --primary: #FFD700;
+            --primary-dark: #D4AF37;
+            --primary-light: #FFEC8B;
+            --dark: #0a0a0a;
+            --bg: #0f0f0f;
             --white: #fff;
+            --gold-gradient: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #FFD700 100%);
+            --gold-shine: linear-gradient(135deg, #FFEC8B 0%, #FFD700 25%, #D4AF37 50%, #FFD700 75%, #FFEC8B 100%);
         }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             padding-bottom: 70px;
+            color: white;
         }
         
         /* App Bar */
         .app-bar {
-            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gold-gradient);
             padding: 8px 16px;
             display: flex;
             justify-content: space-between;
@@ -33,10 +37,10 @@
         .app-bar__left { display: flex; align-items: center; gap: 10px; }
         .app-bar__icon { width: 36px; height: 36px; background: var(--dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
         .app-bar__icon img { width: 28px; height: 28px; object-fit: contain; }
-        .app-bar__text h4 { color: white; font-size: 12px; font-weight: 800; }
-        .app-bar__text p { color: rgba(255,255,255,0.8); font-size: 10px; }
+        .app-bar__text h4 { color: var(--dark); font-size: 12px; font-weight: 800; }
+        .app-bar__text p { color: rgba(0,0,0,0.7); font-size: 10px; }
         .btn-download {
-            background: white;
+            background: var(--dark);
             color: var(--primary);
             border: none;
             padding: 6px 14px;
@@ -53,8 +57,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
         }
-        .header__logo { height: 28px; }
+        .header__logo { height: 32px; }
         .header__logo img { height: 100%; width: auto; }
         .header__nav { display: flex; gap: 8px; align-items: center; }
         .btn-login {
@@ -68,8 +73,8 @@
             cursor: pointer;
         }
         .btn-signup {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
+            background: var(--gold-gradient);
+            color: var(--dark);
             border: none;
             padding: 6px 14px;
             border-radius: 20px;
@@ -80,24 +85,25 @@
         .btn-menu {
             background: none;
             border: none;
-            color: white;
+            color: var(--primary);
             font-size: 20px;
             cursor: pointer;
             margin-left: 4px;
         }
         
         /* Hero */
-        .hero { padding: 12px; background: white; }
+        .hero { padding: 12px; background: var(--bg); }
         .hero__banner {
-            background: linear-gradient(135deg, #E8F6F3 0%, #D5F5E3 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             border-radius: 16px;
             overflow: hidden;
+            border: 1px solid rgba(255,215,0,0.2);
         }
         .hero__banner img { width: 100%; height: auto; display: block; }
         
         /* Marquee */
         .marquee {
-            background: #E8F6F3;
+            background: rgba(255,215,0,0.1);
             margin-top: 12px;
             padding: 10px 16px;
             border-radius: 25px;
@@ -105,8 +111,9 @@
             align-items: center;
             gap: 8px;
             font-size: 12px;
-            color: #666;
+            color: #ccc;
             overflow: hidden;
+            border: 1px solid rgba(255,215,0,0.15);
         }
         .marquee__icon { color: var(--primary); font-size: 14px; flex-shrink: 0; }
         .marquee__text { white-space: nowrap; animation: scroll 20s linear infinite; }
@@ -116,25 +123,27 @@
         .categories-section { padding: 12px 12px 0; }
         .categories {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 8px;
-            background: white;
+            background: var(--dark);
             padding: 16px 12px;
             border-radius: 16px;
+            border: 1px solid rgba(255,215,0,0.1);
         }
         .category { text-align: center; cursor: pointer; }
         .category img { width: 50px; height: 50px; object-fit: contain; }
         .category__name { font-size: 9px; font-weight: 700; color: #888; display: block; margin-top: 4px; }
+        .category.active .category__name { color: var(--primary); }
         
         /* Section */
-        .section { padding: 16px; background: white; margin-top: 8px; }
+        .section { padding: 16px; background: var(--dark); margin-top: 8px; border-top: 1px solid rgba(255,215,0,0.1); border-bottom: 1px solid rgba(255,215,0,0.1); }
         .section__header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
         }
-        .section__title { font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+        .section__title { font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px; color: white; }
         .badge-hot {
             background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
             color: white;
@@ -160,6 +169,7 @@
             overflow: hidden;
             position: relative;
             cursor: pointer;
+            border: 1px solid rgba(255,215,0,0.1);
         }
         .game-card img { width: 100%; height: 100px; object-fit: cover; display: block; }
         .game-card__badge {
@@ -186,7 +196,8 @@
             position: relative;
             cursor: pointer;
             aspect-ratio: 1;
-            background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            border: 1px solid rgba(255,215,0,0.1);
         }
         .provider-card img { width: 100%; height: 70%; object-fit: cover; }
         .provider-card__name {
@@ -194,8 +205,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0,0,0,0.7);
-            color: white;
+            background: rgba(0,0,0,0.8);
+            color: var(--primary);
             padding: 6px;
             font-size: 9px;
             font-weight: 700;
@@ -206,10 +217,12 @@
         .footer {
             text-align: center;
             padding: 20px 16px 30px;
-            background: white;
+            background: var(--dark);
             margin-top: 8px;
+            border-top: 1px solid rgba(255,215,0,0.1);
         }
-        .footer__text { color: #aaa; font-size: 12px; line-height: 1.6; }
+        .footer__text { color: #888; font-size: 12px; line-height: 1.6; }
+        .footer__text span { color: var(--primary); }
         
         /* Bottom Nav */
         .bottom-nav {
@@ -222,6 +235,7 @@
             justify-content: space-around;
             padding: 6px 0 8px;
             z-index: 100;
+            border-top: 1px solid rgba(255,215,0,0.2);
         }
         .bottom-nav__item {
             display: flex;
@@ -236,7 +250,7 @@
         .bottom-nav__home-btn {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gold-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -244,7 +258,7 @@
             border: 3px solid var(--dark);
             font-weight: 900;
             font-size: 18px;
-            color: white;
+            color: var(--dark);
             font-style: italic;
         }
         
@@ -255,15 +269,15 @@
             right: 16px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: var(--gold-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--dark);
             font-size: 20px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(26, 188, 156, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
             z-index: 99;
         }
     </style>
@@ -272,9 +286,9 @@
     <!-- App Bar -->
     <div class="app-bar">
         <div class="app-bar__left">
-            <div class="app-bar__icon"><img src="images/header/app-icon.png" alt="A1"></div>
+            <div class="app-bar__icon"><img src="images/header/app-icon.png" alt="JB8"></div>
             <div class="app-bar__text">
-                <h4>AONE APP</h4>
+                <h4>JB8 APP</h4>
                 <p>Download App Now!</p>
             </div>
         </div>
@@ -283,7 +297,7 @@
 
     <!-- Header -->
     <header class="header">
-        <div class="header__logo"><img src="images/header/logo.png" alt="AONE"></div>
+        <div class="header__logo"><img src="images/header/logo.png" alt="JB8"></div>
         <nav class="header__nav">
             <button class="btn-login">LOGIN</button>
             <button class="btn-signup">SIGN UP</button>
@@ -299,14 +313,14 @@
 
         <div class="marquee">
             <span class="marquee__icon">🔊</span>
-            <span class="marquee__text">Welcome to AONE GLOBAL GAMING. Malaysia's most trusted platform! 🎰</span>
+            <span class="marquee__text">Welcome to JB8 GLOBAL GAMING. Malaysia's most trusted platform! 🎰</span>
         </div>
     </section>
 
     <!-- Categories -->
     <section class="categories-section">
         <div class="categories">
-            <div class="category">
+            <div class="category active">
                 <img src="images/categories/slots-active.png" alt="Slots">
                 <span class="category__name">SLOTS</span>
             </div>
@@ -375,7 +389,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p class="footer__text">Discover more about Aone Malaysia — trusted platform, bonuses, and unique features.</p>
+        <p class="footer__text">Discover more about <span>JB8</span> Malaysia — trusted platform, bonuses, and unique features.</p>
     </footer>
 
     <!-- Bottom Nav -->
@@ -389,7 +403,7 @@
             <span>Event</span>
         </a>
         <a href="#" class="bottom-nav__item bottom-nav__item--home">
-            <div class="bottom-nav__home-btn">A1</div>
+            <div class="bottom-nav__home-btn">8</div>
             <span>Home</span>
         </a>
         <a href="#" class="bottom-nav__item">
