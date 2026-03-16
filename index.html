@@ -153,52 +153,15 @@
             fill: var(--gold-primary);
             filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
         }
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 900;
-            background: var(--gold-shine);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-            position: relative;
-            z-index: 1;
-            letter-spacing: 2px;
+        .logo-image {
+            height: 42px;
+            width: auto;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+            transition: all 0.3s ease;
         }
-        .logo-text::after {
-            content: 'JB8';
-            position: absolute;
-            left: 0;
-            top: 0;
-            background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, transparent 50%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .diamond-8 {
-            display: inline-block;
-            position: relative;
-            background: var(--gold-metallic);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .diamond-8::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 8px;
-            height: 8px;
-            background: var(--gold-light);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--gold-light);
-            animation: sparkle 2s infinite;
-        }
-        @keyframes sparkle {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+        .logo-image:hover {
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.6));
+            transform: scale(1.05);
         }
         
         .luxury-nav { display: flex; gap: 10px; align-items: center; }
@@ -642,13 +605,7 @@
     <!-- Luxury Header -->
     <header class="luxury-header">
         <div class="jb8-logo">
-            <div class="spade-symbol">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L4 10C4 10 4 14 8 14C10 14 11 13 12 12V12C13 13 14 14 16 14C20 14 20 10 20 10L12 2Z"/>
-                    <path d="M12 12V20M9 20H15" stroke="currentColor" stroke-width="2" fill="none"/>
-                </svg>
-            </div>
-            <div class="logo-text">JB<span class="diamond-8">8</span></div>
+            <img src="images/header/logo.png" alt="JB8 Premium" class="logo-image">
         </div>
         <nav class="luxury-nav">
             <button class="btn-luxury-login">LOGIN</button>
@@ -749,7 +706,7 @@
 
     <!-- Luxury Footer -->
     <footer class="luxury-footer">
-        <div class="luxury-footer__logo">JB8</div>
+        <div class="luxury-footer__logo"><img src="images/header/logo.png" alt="JB8" style="height: 50px; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));"></div>
         <p class="luxury-footer__text">
             Experience the pinnacle of <span>luxury gaming</span> with JB8 Premium.<br>
             Exclusive bonuses, VIP treatment, and world-class entertainment.
